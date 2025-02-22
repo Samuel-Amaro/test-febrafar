@@ -7,7 +7,7 @@
 </script>
 
 {#if totalPages > 1}
-	<div class="mt-4 flex flex-wrap items-center justify-center space-x-2">
+	<div class="mt-4 flex flex-wrap items-center justify-center gap-2">
 		<button
 			type="button"
 			on:click={() => {
