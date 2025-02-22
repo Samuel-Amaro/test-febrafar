@@ -2,7 +2,6 @@
 	import { page } from '$app/stores';
 	import Search from '$lib/Search.svelte';
 	import type { DataType } from '../types';
-	import { replaceState } from '$app/navigation';
 	import Skeleton from '$lib/Skeleton.svelte';
 	import Pagination from '$lib/Pagination.svelte';
 	import CircleInfo from '$lib/icons/CircleInfo.svelte';
@@ -83,7 +82,7 @@
 			</div>
 		{/if}
 		<Pagination totalPages={data.totalPages} currentPage={data.currentPage} />
-	{:catch error}
+	{:catch}
 		<div
 			class="flex flex-col items-center justify-center rounded-lg border border-red-300 bg-white py-10 shadow-md"
 		>

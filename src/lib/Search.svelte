@@ -18,8 +18,6 @@
 	function updateSearch(value: string) {
 		clearTimeout(debounceTimer);
 		debounceTimer = setTimeout(() => {
-			const params = new URLSearchParams(window.location.search);
-
 			if (!value.trim()) {
 				query = '';
 				replaceState($page.url.pathname, {
