@@ -5,18 +5,8 @@
 	import { replaceState } from '$app/navigation';
 	import Skeleton from '$lib/Skeleton.svelte';
 	import Pagination from '$lib/Pagination.svelte';
-
-	function getUrl(search?: string, page?: number) {
-		const baseUrl = '/api/datas';
-
-		if (search) {
-			return `${baseUrl}?search=${search}`;
-		} else if (page) {
-			return `${baseUrl}?page=${page.toString()}`;
-		} else {
-			return baseUrl;
-		}
-	}
+	import CircleInfo from '$lib/icons/CircleInfo.svelte';
+	import { formatDate, getUrl } from '../utils';
 
 	async function getDatas(search?: string, page?: number) {
 		await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -33,7 +23,7 @@
 
 <article class="mx-auto flex max-w-[1110px] flex-col gap-6 p-8">
 	<header>
-		<div class="flex items-center justify-between">
+		<div class="flex flex-wrap items-center justify-between gap-3">
 			<h1 class="text-2xl text-[#6B5A8A]">Contatos</h1>
 			<div>
 				<Search />
@@ -47,15 +37,23 @@
 			Exibindo {data.data.length} do total de {data.totalItems} registros encontrados
 		</p>
 		{#if data.data.length > 0}
-			<div class="mt-4 overflow-hidden rounded-lg bg-white shadow-md">
-				<table class="w-full border-collapse overflow-auto">
+			<div class="mt-4 overflow-auto rounded-lg bg-white shadow-md">
+				<table class="w-full border-collapse">
 					<thead>
 						<tr class="bg-[#F7F3FB] text-[#6B5A8A]">
 							<th class="p-3 text-left text-sm font-semibold">Nome</th>
 							<th class="p-3 text-left text-sm font-semibold">Telefone</th>
 							<th class="p-3 text-left text-sm font-semibold">Cargo</th>
 							<th class="p-3 text-left text-sm font-semibold">Departamento</th>
-							<th class="p-3 text-left text-sm font-semibold">Último Acesso</th>
+							<th
+								class="p-3 text-left text-sm font-semibold hover:cursor-help"
+								title="A Ultima vez que o usuário acessou o sistema"
+							>
+								<span class="flex items-center gap-2 fill-[#6B5A8A]">
+									Último Acesso
+									<CircleInfo className="flex items-center size-4" />
+								</span>
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -68,7 +66,9 @@
 								<td class="p-3 text-sm">{item.phone}</td>
 								<td class="p-3 text-sm">{item.cargos.join('; ')}</td>
 								<td class="p-3 text-sm">{item.departamentos.join('; ')}</td>
-								<td class="p-3 text-sm">{item.ultimoAcesso || '-'}</td>
+								<td class="p-3 text-sm"
+									>{item.ultimoAcesso ? formatDate(item.ultimoAcesso) : '-'}</td
+								>
 							</tr>
 						{/each}
 					</tbody>
