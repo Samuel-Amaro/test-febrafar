@@ -20,8 +20,8 @@ Teste tecnico para vaga de front-end developer
 
 ## Links
 
-- URL do repositório: [Repositório](https://github.com/Samuel-Amaro/hangman-game)
-- URL da solução: [Jogo Da Forca](https://hangman-game-five-xi.vercel.app/)
+- URL do repositório: [Repositório](https://github.com/Samuel-Amaro/test-febrafar)
+- URL da solução: [Teste tecnico](https://test-febrafar.vercel.app/)
 
 ## Meu processo
 
